@@ -9,6 +9,7 @@ import StackedNameForm from './StackedNameForm';
 import NameAndAddress from './NameAndAddress';
 import DogForm from './DogForm';
 import useNameForm from './NameForm/useNameForm';
+import useValidatedForm from './ValidatedForm/useValidatedForm';
 import formFragmentHook from './lib/formFragmentHook';
 
 const  App = () => {
@@ -16,6 +17,7 @@ const  App = () => {
   const [firstLastState, firstLastUI] = useNameForm(FirstAndLastForm);
   const [stackedNameState, stackedNameUI] = useNameForm(StackedNameForm);
   const [dogState, dogUI] = formFragmentHook(['name', 'age', 'breed', 'rating'])(DogForm);
+  const [validatedState, validatedUI] = useValidatedForm();
   return (
     <BrowserRouter>
       <div className="App">
@@ -27,6 +29,7 @@ const  App = () => {
           <Link to="/name-stacked" style={{ margin: '20px' }}>Stacked name form</Link>
           <Link to="/name-and-address" style={{ margin: '20px' }}>Name and address</Link>
           <Link to="/dog" style={{ margin: '20px' }}>Dog</Link>
+          <Link to="/validated" style={{ margin: '20px' }}>Validated</Link>
         </nav>
         <Route path="/counter" component={Counter} />
         <Route path="/name" render={() => nameFormUI}/>
@@ -34,6 +37,7 @@ const  App = () => {
         <Route path="/name-stacked" render={() => stackedNameUI}/>
         <Route path="/name-and-address" component={NameAndAddress}/>
         <Route path="/dog" render={() => dogUI}/>
+        <Route path="/validated" render={() => validatedUI}/>
       </div>
     </BrowserRouter>
   );
